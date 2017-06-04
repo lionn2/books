@@ -1,21 +1,19 @@
 import * as types from '../actions/ActionTypes';
+import { fromJS, List, Map } from 'immutable';
 
-let defaultState = [{
-  name: 'Book1'
-}, {
-  name: 'Book2'
-}, {
-  name: 'Book3'
-}];
+const defaultState = Map({
+  books: List(),
+});
 
-export default function books(state = defaultState, {type, books}) {
+export default function books(state = defaultState, {type, books, message}) {
   switch (type) {
     case types.BOOKS_REQUEST:
       break;
     case types.BOOKS_SUCCESS:
-      return books;
+      return state.set('books', fromJS(books));
     case types.BOOKS_ERROR:
-      console.error('books error');
+      console.error(message);
+      return state.set('message', message);
       break;
   }
 

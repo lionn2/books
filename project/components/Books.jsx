@@ -1,35 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { Link } from 'react-router-dom';
 
-class Books extends React.Component {
+export default class Books extends React.Component {
 	static propTypes = {
-		books: PropTypes.arrayOf(PropTypes.shape({
+		books: ImmutablePropTypes.listOf(ImmutablePropTypes.contains({
+      id: PropTypes.number.isRequired,
 			name: PropTypes.string.isRequired,
+			authors: ImmutablePropTypes.listOf(ImmutablePropTypes.contains({
+				id: PropTypes.number.isRequired,
+				name: PropTypes.string.isRequired,
+			})),
+			genres: ImmutablePropTypes.listOf(PropTypes.string),
 		})),
 	};
 
 	render() {
 		return (
 			<div className="books">
-				<h3>Books</h3>
-				<hr/>
         <ul>
-				{this.props.books.map((book, i) => (
-          <li className="book" key={i} >
-            <span>Name: {book.name}</span>
-          </li>
-        ))}
+				{this.props.books.map(book => {
+				  let id = book.get('id');
+				  let authors = book.get('authors');
+          return (
+            <li className="book" key={id}>
+              <Link to={{pathname: `/books/${id}`}}><span className="book-name">{book.get('name')}</span></Link>
+              {authors
+                ? <div>
+                  <span>Authors:</span>
+                  <ul>
+                    {authors.map(author => {
+                      let id = author.get('id');
+                      return (
+                        <Link to={{pathname: `/authors/${id}`}} key={id}><li className="book-author">
+                          <span>Name: {author.get('name')}</span>
+                        </li></Link>
+                      );
+                    })}
+                  </ul>
+                </div>
+                : null}
+            </li>
+          );
+        })}
         </ul>
 			</div>
 		);
 	}
 }
-
-const mapStateToProps = function(store) {
-  return {
-    books: store.booksState,
-  };
-};
-
-export default connect(mapStateToProps)(Books);
