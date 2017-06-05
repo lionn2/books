@@ -18,3 +18,21 @@ export function booksError(error) {
 		message: typeof error === 'object' ? error.message : error,
 	});
 }
+
+export function bookSuccess(book) {
+  store.dispatch({
+    book,
+    type: types.BOOK_SUCCESS,
+  });
+}
+export function bookRequest() {
+  store.dispatch({
+    type: types.BOOK_REQUEST,
+  });
+}
+export function bookError(error) {
+  store.dispatch({
+    type: types.BOOK_ERROR,
+    message: typeof error === 'object' ? error.message : error,
+  });
+}

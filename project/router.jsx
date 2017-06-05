@@ -1,12 +1,16 @@
 import React from 'react';
-import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import BooksPage from './components/BooksPage';
+import BookPage from './components/BookPage';
 
 export default (
   <Router>
-    <Route>
-      {/*<Redirect from="/" to="books" />*/}
-      <Route exact path="/" component={BooksPage}/>
+    <Route path="/">
+      <Switch>
+        <Redirect exact from='/' to='/books'/>
+        <Route exact path='/books' component={BooksPage}/>
+        <Route exact path="/books/:bookId" component={BookPage}/>
+      </Switch>
     </Route>
   </Router>
 );
