@@ -1,15 +1,19 @@
 const authors = [{
   id: 1,
   name: 'Author1',
+  biography: 'Author1 biography'
 }, {
   id: 2,
   name: 'Author2',
+  biography: 'Author2 biography'
 }, {
-  id: 1,
-  name: 'Author1',
+  id: 3,
+  name: 'Author3',
+  biography: 'Author3 biography'
 }, {
   id: 4,
   name: 'Author4',
+  biography: 'Author4 biography'
 }];
 
 const genres = [
@@ -32,6 +36,7 @@ const books = [{
   name: 'Book1',
   authors: [authors[0]],
   genres: genres.slice(0, 2),
+  content: 'Short Content 1',
 }, {
   id: 2,
   name: 'Book2',
@@ -42,10 +47,11 @@ const books = [{
   name: 'Book3',
   authors: [authors[3]],
   genres: genres.slice(6),
+  content: 'Short Content 3',
 }];
 
 export function getBooks() {
-  return Promise.resolve(books);
+  return Promise.resolve(JSON.parse(JSON.stringify(books)));
 }
 
 export function getBookById(id) {
@@ -59,7 +65,7 @@ export function getBookById(id) {
 }
 
 export function getAuthors() {
-  return Promise.resolve(authors.map(mapAuthor));
+  return Promise.resolve(authors.map(author => mapAuthor(author)));
 }
 
 export function getAuthorById(id) {
@@ -73,7 +79,7 @@ export function getAuthorById(id) {
 }
 
 export function getGenreByName(name) {
-  let genre = genres.find(genre => genre.name == name);
+  let genre = genres.find(genre => genre == name);
 
   if (genre) {
     return Promise.resolve(mapGenre(genre));
@@ -83,17 +89,15 @@ export function getGenreByName(name) {
 }
 
 function mapAuthor(author) {
-  let books = books.filter(book => book.authors.indexOf(author) >= 0);
   return {
     ...author,
-    books,
+    books: books.filter(book => book.authors.indexOf(author) >= 0),
   };
 }
 
 function mapGenre(genre) {
-  let books = books.filter(book => book.genres.indexOf(genre) >= 0);
   return {
     name: genre,
-    books,
+    books: books.filter(book => book.genres.indexOf(genre) >= 0),
   };
 }

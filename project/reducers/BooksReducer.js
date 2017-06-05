@@ -18,7 +18,7 @@ export default function books(state = defaultState, action) {
       return state.set('books', fromJS(action.books));
     case types.BOOK_SUCCESS:
       let books = state.get('books');
-      let index = books.findIndex(b => b.get('id') == action.book.id);
+      let index = books.findIndex(book => book.get('id') == action.book.id);
       if (index >= 0) {
         return state.setIn(['books', index], fromJS(action.book));
       } else {

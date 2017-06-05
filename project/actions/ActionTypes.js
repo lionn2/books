@@ -5,3 +5,15 @@ export const BOOKS_ERROR = 'BOOKS_ERROR';
 export const BOOK_REQUEST = 'BOOK_REQUEST';
 export const BOOK_SUCCESS = 'BOOK_SUCCESS';
 export const BOOK_ERROR = 'BOOK_ERROR';
+
+export const AUTHORS_REQUEST = 'AUTHORS_REQUEST';
+export const AUTHORS_SUCCESS = 'AUTHORS_SUCCESS';
+export const AUTHORS_ERROR = 'AUTHORS_ERROR';
+
+export const AUTHOR_REQUEST = 'AUTHOR_REQUEST';
+export const AUTHOR_SUCCESS = 'AUTHOR_SUCCESS';
+export const AUTHOR_ERROR = 'AUTHOR_ERROR';
+
+export const GENRE_REQUEST = 'GENRE_REQUEST';
+export const GENRE_SUCCESS = 'GENRE_SUCCESS';
+export const GENRE_ERROR = 'GENRE_ERROR';
