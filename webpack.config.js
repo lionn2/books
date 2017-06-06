@@ -19,7 +19,7 @@ module.exports = {
     publicPath: '',
     filename: '[name].bundle.js'
   },
-  devtool: prod ? null : 'inline-source-map',
+  devtool: prod ? false : 'inline-source-map',
   module: {
     loaders: [{
       test: [/\.js$/, /\.jsx$/],
@@ -34,9 +34,6 @@ module.exports = {
         fallback: 'style-loader',
         use: 'css-loader!less-loader'
       }),
-    }, {
-      test: /\.(png|jpg|gif|svg|ttf|otf|eot|woff)$/,
-      loader: 'file?name=assets/[name][hash:6].[ext]'
     }],
   },
   plugins: [
