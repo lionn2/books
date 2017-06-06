@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Books from './Books';
+import Menu from './Menu';
 import { booksSuccess, booksError, booksRequest } from '../actions/BooksActions'
 import { getBooks } from '../data';
 
@@ -18,6 +19,7 @@ class BooksPage extends React.Component {
   render() {
     return (
       <div>
+        <Menu/>
         <h3>Books</h3>
         <hr/>
         <Books books={this.props.books} />

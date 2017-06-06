@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { authorSuccess, authorError, authorRequest } from '../actions/AuthorsActions'
 import { getAuthorById } from '../data';
 import Author from './Author';
+import Menu from './Menu';
 
 class AuthorPage extends React.Component {
   componentWillMount() {
@@ -12,9 +12,14 @@ class AuthorPage extends React.Component {
     getAuthorById(this.authorId).then(authorSuccess, authorError);
   }
   render() {
-    return (this.props.message || !this.props.author)
-      ? <div className="erorr">{this.props.message || `Author with id ${this.authorId} not found`}</div>
-      : <Author author={this.props.author} isFullScreen={true}></Author>;
+    return (
+      <div>
+        <Menu/>
+        {(this.props.message || !this.props.author)
+        ? <div className="error">{this.props.message || `Author with id ${this.authorId} not found`}</div>
+        : <Author author={this.props.author} isFullScreen={true}></Author>}
+      </div>
+    );
   }
 
   get authorId() {

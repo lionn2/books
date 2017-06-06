@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { bookSuccess, bookError, bookRequest } from '../actions/BooksActions'
 import { getBookById } from '../data';
 import Book from './Book';
+import Menu from './Menu';
 
 class BookPage extends React.Component {
   componentWillMount() {
@@ -12,9 +12,14 @@ class BookPage extends React.Component {
     getBookById(this.bookId).then(bookSuccess, bookError);
   }
   render() {
-    return (this.props.message || !this.props.book)
-      ? <div className="erorr">{this.props.message || `Book with id ${this.bookId} not found`}</div>
-      : <Book book={this.props.book} isFullScreen={true}></Book>;
+    return (
+      <div>
+        <Menu/>
+        {(this.props.message || !this.props.book)
+          ? <div className="erorr">{this.props.message || `Book with id ${this.bookId} not found`}</div>
+          : <Book book={this.props.book} isFullScreen={true}></Book>}
+      </div>
+    );
   }
 
   get bookId() {

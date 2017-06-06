@@ -22,9 +22,12 @@ export default class Book extends React.Component {
     let authors = this.props.book.get('authors');
     let genres = this.props.book.get('genres');
     let content = this.props.book.get('content');
+    const bookNameHTML = <span className="book-name">{this.props.book.get('name')}</span>;
     return (
       <div className="book">
-        <Link to={{pathname: `/books/${this.props.book.get('id')}`}}><span className="book-name">{this.props.book.get('name')}</span></Link>
+        {this.props.isFullScreen
+          ? <h3>{bookNameHTML}</h3>
+          : <Link to={{pathname: `/books/${this.props.book.get('id')}`}}>{bookNameHTML}</Link>}
         {authors
           ? <div>
             <span>Authors:</span>

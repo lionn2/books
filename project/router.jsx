@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
+import Menu from './components/Menu';
 import BooksPage from './components/BooksPage';
 import BookPage from './components/BookPage';
 import AuthorsPage from './components/AuthorsPage';

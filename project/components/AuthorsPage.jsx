@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Author from './Author';
+import Menu from './Menu';
 import { authorsSuccess, authorsError, authorsRequest } from '../actions/AuthorsActions'
 import { getAuthors } from '../data';
 
@@ -18,6 +19,7 @@ class AuthorsPage extends React.Component {
   render() {
     return (
       <div>
+        <Menu/>
         <h3>Authors</h3>
         <hr/>
         <div className="authors">

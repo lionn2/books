@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { genreSuccess, genreError, genreRequest } from '../actions/GenreActions'
 import { getGenreByName } from '../data';
 import Genre from './Genre';
+import Menu from './Menu';
 
 class GenrePage extends React.Component {
   componentWillMount() {
@@ -11,9 +12,14 @@ class GenrePage extends React.Component {
     getGenreByName(this.props.match.params.genre).then(genreSuccess, genreError);
   }
   render() {
-    return (this.props.message || !this.props.genre)
-      ? <div className="error">{this.props.message || `Genre ${this.props.match.params.genre} not found`}</div>
-      : <Genre genre={this.props.genre}></Genre>;
+    return (
+      <div>
+        <Menu/>
+        {(this.props.message || !this.props.genre)
+          ? <div className="error">{this.props.message || `Genre ${this.props.match.params.genre} not found`}</div>
+          : <Genre genre={this.props.genre}></Genre>}
+      </div>
+    );
   }
 }
 

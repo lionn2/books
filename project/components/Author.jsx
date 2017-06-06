@@ -19,9 +19,12 @@ export default class Author extends React.Component {
 
   render() {
     let books = this.props.author.get('books');
+    const authorNameHTML = <span className="author-name">{this.props.author.get('name')}</span>;
     return (
       <div className="author">
-        <Link to={{pathname: `/authors/${this.props.author.get('id')}`}}><span className="author-name">{this.props.author.get('name')}</span></Link>
+        {this.props.isFullScreen
+          ? <h3>{authorNameHTML}</h3>
+          : <Link to={{pathname: `/authors/${this.props.author.get('id')}`}}>{authorNameHTML}</Link>}
         {this.props.isFullScreen && this.props.author.get('biography')
           ? <div className="author-biography">{this.props.author.get('biography')}</div>
           : null}
