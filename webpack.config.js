@@ -29,9 +29,12 @@ module.exports = {
         presets: ['react', 'es2015', 'stage-2']
       },
     }, {
-      // test: /\.css$/,
-      // loader: ExtractTextPlugin.extract('style', 'css')
-      // }, {
+      test: /\.less$/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader!less-loader'
+      }),
+    }, {
       test: /\.(png|jpg|gif|svg|ttf|otf|eot|woff)$/,
       loader: 'file?name=assets/[name][hash:6].[ext]'
     }],

@@ -20,8 +20,7 @@ class AuthorsPage extends React.Component {
     return (
       <div>
         <Menu/>
-        <h3>Authors</h3>
-        <hr/>
+        <h3>Authors<hr/></h3>
         <div className="authors">
           <ul>
             {this.props.authors.map(author => {

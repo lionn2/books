@@ -15,7 +15,7 @@ export default function books(state = defaultState, action) {
       console.error(action.message);
       return state.set('message', action.message);
     case types.BOOKS_SUCCESS:
-      return state.set('books', fromJS(action.books));
+      return state.set('books', fromJS(action.books)).delete('message');
     case types.BOOK_SUCCESS:
       let books = state.get('books');
       let index = books.findIndex(book => book.get('id') == action.book.id);
@@ -23,7 +23,7 @@ export default function books(state = defaultState, action) {
         return state.setIn(['books', index], fromJS(action.book));
       } else {
         let newBooks = books.push(fromJS(action.book));
-        return state.set('books', newBooks);
+        return state.set('books', newBooks).delete('message');
       }
   }
 

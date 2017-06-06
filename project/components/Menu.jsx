@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 export default class Menu extends React.Component {
   render() {
     return (
-      <nav>
-        <ul className="menu">
-          <Link to="/books/"><li>Books</li></Link>
-          <Link to="/authors/"><li>Authors</li></Link>
-        </ul>
+      <nav className="menu">
+        <Link to="/books/">Books</Link>
+        <Link to="/authors/">Authors</Link>
       </nav>
     );
   }

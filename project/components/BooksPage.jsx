@@ -20,8 +20,7 @@ class BooksPage extends React.Component {
     return (
       <div>
         <Menu/>
-        <h3>Books</h3>
-        <hr/>
+        <h3>Books<hr/></h3>
         <Books books={this.props.books} />
       </div>
     );

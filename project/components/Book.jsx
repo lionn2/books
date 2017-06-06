@@ -22,16 +22,16 @@ export default class Book extends React.Component {
     let authors = this.props.book.get('authors');
     let genres = this.props.book.get('genres');
     let content = this.props.book.get('content');
-    const bookNameHTML = <span className="book-name">{this.props.book.get('name')}</span>;
+    const bookNameHTML = <span className="name">{this.props.book.get('name')}</span>;
     return (
-      <div className="book">
+      <article className="book">
         {this.props.isFullScreen
-          ? <h3>{bookNameHTML}</h3>
+          ? <h3>{bookNameHTML}<hr/></h3>
           : <Link to={{pathname: `/books/${this.props.book.get('id')}`}}>{bookNameHTML}</Link>}
         {authors
-          ? <div>
-            <span>Authors:</span>
-            <ul>
+          ? <div className="feature">
+            <b><span>Authors:</span></b>
+            <ul className="children">
               {authors.map(author => {
                 let id = author.get('id');
                 return (
@@ -45,9 +45,9 @@ export default class Book extends React.Component {
           : null}
 
         {this.props.isFullScreen && genres
-          ? <div>
-            <span>Genres:</span>
-            <ul>
+          ? <div className="feature">
+            <b><span>Genres:</span></b>
+            <ul className="children">
               {genres.map((genre, iGenre) => {
                 return (
                   <Link to={{pathname: `/genres/${genre}`}} key={iGenre}><li className="book-genre">
@@ -60,12 +60,12 @@ export default class Book extends React.Component {
           : null}
 
         {this.props.isFullScreen && content
-          ? <div className="book-content">
-            Content:
+          ? <div className="feature book-content">
+            <b>Content:</b>
             <div>{content}</div>
           </div>
           : null}
-      </div>
+      </article>
     );
   }
 }

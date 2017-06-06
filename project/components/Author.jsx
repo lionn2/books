@@ -19,19 +19,17 @@ export default class Author extends React.Component {
 
   render() {
     let books = this.props.author.get('books');
-    const authorNameHTML = <span className="author-name">{this.props.author.get('name')}</span>;
+    const authorNameHTML = <span className="name">{this.props.author.get('name')}</span>;
     return (
-      <div className="author">
+      <article className="author">
         {this.props.isFullScreen
-          ? <h3>{authorNameHTML}</h3>
+          ? <h3>{authorNameHTML}<hr/></h3>
           : <Link to={{pathname: `/authors/${this.props.author.get('id')}`}}>{authorNameHTML}</Link>}
-        {this.props.isFullScreen && this.props.author.get('biography')
-          ? <div className="author-biography">{this.props.author.get('biography')}</div>
-          : null}
+
         {books
-          ? <div>
-            <span>Books:</span>
-            <ul>
+          ? <div className="feature">
+            <b><span>Books:</span></b>
+            <ul className="children">
               {books.map(book => {
                 let id = book.get('id');
                 return (
@@ -43,7 +41,14 @@ export default class Author extends React.Component {
             </ul>
           </div>
           : null}
-      </div>
+
+        {this.props.isFullScreen && this.props.author.get('biography')
+          ? <div className="feature author-biography">
+            <b>Biography:</b>
+            <div>{this.props.author.get('biography')}</div>
+          </div>
+          : null}
+      </article>
     );
   }
 }

@@ -1,0 +1,75 @@
+@link-color: #078dd2;
+@border-color-blue: #19d0d3;
+@background-color-blue: #bcf0f8;
+@border-color-yellow: #d3d125;
+@background-color-yellow: #f8eec1;
+@border-color-orange: #d39b11;
+@background-color-orange: #f8d3a1;
+
+body {
+  font-family: 'Comic Sans MS';
+}
+nav {
+  display: flex;
+
+  a {
+    color: initial;
+    flex: 0 0 auto;
+    padding: 5px 10px;
+    font-size: 20px;
+    border: 1px solid @border-color-blue;
+    background: @background-color-blue;
+
+    &:visited {
+      color: initial;
+    }
+  }
+  a + a {
+    margin-left: 10px;
+  }
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: @link-color;
+
+  &:visited {
+    color: @link-color;
+  }
+}
+
+article {
+  border: 1px solid @border-color-yellow;
+  background: @background-color-yellow;
+  margin-top: 10px;
+  padding: 10px 10px;
+
+  :not(h3) .name {
+    font-size: 25px;
+    margin-bottom: 5px;
+  }
+
+  .children {
+    display: flex;
+
+    & > a {
+      border: 1px solid @border-color-orange;
+      background: @background-color-orange;
+      padding: 3px 5px;
+
+      & + a {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .feature + .feature {
+    margin-top: 10px;
+  }
+}

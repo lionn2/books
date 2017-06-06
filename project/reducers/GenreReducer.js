@@ -12,7 +12,7 @@ export default function genre(state = defaultState, action) {
       console.error(action.message);
       return state.set('message', action.message);
     case types.GENRE_SUCCESS:
-      return state.set('genre', fromJS(action.genre));
+      return state.set('genre', fromJS(action.genre)).delete('message');
   }
 
   return state;

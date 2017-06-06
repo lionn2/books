@@ -16,13 +16,10 @@ export default class Genre extends React.Component {
     let books = this.props.genre.get('books');
     return (
       <div className="genre">
-        <h3 className="genre-name">{this.props.genre.get('name')}</h3>
-        {this.props.isFullScreen && this.props.genre.get('biography')
-          ? <div className="genre-biography">{this.props.genre.get('biography')}</div>
-          : null}
+        <h3 className="name">{this.props.genre.get('name')}<hr/></h3>
         {books
-          ? <div>
-            <span>Books:</span>
+          ? <div className="feature">
+            <b><span>Books:</span></b>
             <Books books={books}/>
           </div>
           : null}
